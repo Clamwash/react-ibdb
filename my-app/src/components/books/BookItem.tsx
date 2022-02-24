@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { FavoritesContext } from '../../store/favorites-context';
 import Card from '../ui/Card';
-import classes from './BookItemStyle.module.css';
+import './BookItemStyle.css';
 
-function BookItem(props) {
+function BookItem(props: any) {
   const favoritesCtx = useContext(FavoritesContext);
   const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
 
@@ -23,16 +23,16 @@ function BookItem(props) {
   }
 
   return (
-    <li className={classes.item}>
+    <li className="item">
       <Card>
-        <div className={classes.image}>
+        <div className="image">
           <img src={props.image} alt={props.title} />
         </div>
-        <div className={classes.content}>
+        <div className="content">
           <p>{props.title}</p>
           <p>{props.description} </p>
         </div>
-        <div className={classes.actions}>
+        <div className="actions">
           <button onClick={toggleFavoriteStatusHandler}>
             {itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}
           </button>

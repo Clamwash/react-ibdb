@@ -1,10 +1,11 @@
+import { Book } from '../../interfaces/Models';
 import BookItem from './BookItem';
-import classes from './BookListStyle.module.css'
+import './BookListStyle.css'
 
-function BookList(props) {
+function BookList(props: any) {
   return (
-    <ul className={classes.list}>
-      {props.books.map((book) => (
+    <ul className="list">
+      {props.books.map((book: Book) => (
         <BookItem
           key={book.id}
           id={book.id}

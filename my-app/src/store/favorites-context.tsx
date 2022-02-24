@@ -1,29 +1,30 @@
 import { createContext, useState } from 'react';
+import { Book } from '../interfaces/Models';
 
 export const FavoritesContext = createContext({
   favorites: [],
   totalFavorites: 0,
-  addFavorite: (favoriteBook) => {},
-  removeFavorite: (bookId) => {},
-  itemIsFavorite: (bookId) => {},
+  addFavorite: (favoriteBook: Book) => {},
+  removeFavorite: (bookId: string) => {},
+  itemIsFavorite: (bookId: string): boolean => {return false},
 });
 
-export function FavoritesContextProvider(props) {
+export function FavoritesContextProvider(props: any) {
   const [userFavorites, setUserFavorites] = useState([]);
 
-  function addFavoriteHandler(favoriteBook) {
+  function addFavoriteHandler(favoriteBook: Book) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.concat(favoriteBook);
     });
   }
 
-  function removeFavoriteHandler(bookId) {
+  function removeFavoriteHandler(bookId: string) {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.filter((book) => book.id !== bookId);
     });
   }
 
-  function itemIsFavoriteHandler(bookId) {
+  function itemIsFavoriteHandler(bookId: string) {
     return userFavorites.some((book) => book.id === bookId);
   }
 

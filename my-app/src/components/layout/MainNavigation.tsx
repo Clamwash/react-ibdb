@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import classes from './MainNavigationStyle.module.css';
+import './MainNavigationStyle.css';
 
 function MainNavigation() {
   return (
-    <header className={classes.header}>
-      <div className={classes.logo}>Internet Book Database</div>
+    <header className="header">
+      <div className="logo">Internet Book Database</div>
       <nav>
         <ul>
           <li>

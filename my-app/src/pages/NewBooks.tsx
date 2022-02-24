@@ -1,10 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import NewBookForm from '../components/books/NewBookForm';
+import { Book } from '../interfaces/Models';
 
 function NewBooksPage() {
   const navigate = useNavigate();
 
-  function addBookHandler(bookData) {
+  function addBookHandler(bookData: Book) {
     fetch('https://react-ibdb-default-rtdb.firebaseio.com/books.json', {
       method: 'POST',
       headers: {

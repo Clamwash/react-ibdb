@@ -13,8 +13,6 @@ function FavoritesPage() {
     content = <BookList books={favoritesCtx.favorites} />;
   }
 
-  console.log(content);
-
   return (
     <section>
       <h1>My Favorites</h1>

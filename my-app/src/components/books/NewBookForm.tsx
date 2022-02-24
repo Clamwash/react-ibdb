@@ -1,13 +1,14 @@
 import { useRef } from 'react';
 import Card from '../ui/Card';
-import classes from './NewBookFormStyle.module.css';
 
-function NewBookForm(props) {
-  const titleInputRef = useRef();
-  const imageInputRef = useRef();
-  const descriptionInputRef = useRef();
+import './NewBookFormStyle.css';
 
-  function submitHandler(event) {
+function NewBookForm(props: any) {
+  const titleInputRef = useRef<HTMLInputElement>();
+  const imageInputRef = useRef<HTMLInputElement>();
+  const descriptionInputRef = useRef<HTMLTextAreaElement>();
+
+  function submitHandler(event: any) {
     event.preventDefault();
 
     const enteredTitle = titleInputRef.current.value;
@@ -27,25 +28,25 @@ function NewBookForm(props) {
 
   return (
     <Card>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <div className={classes.control}>
+      <form className="form" onSubmit={submitHandler}>
+        <div className="control">
           <label htmlFor='title'>Book Title</label>
           <input required type='text' id='title' ref={titleInputRef} />
         </div>
-        <div className={classes.control}>
+        <div className="control">
           <label htmlFor='image'>Book Image</label>
           <input required type='url' id='image' ref={imageInputRef} />
         </div>
-        <div className={classes.control}>
+        <div className="control">
           <label htmlFor='description'>Description</label>
           <textarea
             required
             id='description'
-            rows='5'
+            rows={5}
             ref={descriptionInputRef}
           ></textarea>
         </div>
-        <div className={classes.actions}>
+        <div className="actions">
           <button>Add Book</button>
         </div>
       </form>

@@ -1,5 +1,5 @@
 
-function Card(props) {
+function Card(props: any) {
   return <div>{props.children}</div>;
 }
 
