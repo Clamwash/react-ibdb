@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import BookList from '../components/books/BookList';
+import BookList from '../components/books/BookList/BookList';
 
 function AllBooksPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -40,6 +40,7 @@ function AllBooksPage() {
         }
         setIsLoading(false)
         setLoadedBooks(books);
+        console.log(books)
       });
   }, []);
 

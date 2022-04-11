@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import NewBookForm from '../components/books/NewBookForm';
+import NewBookForm from '../components/books/NewBookForm/NewBookForm';
 import { Book } from '../interfaces/Models';
 
 function NewBooksPage() {

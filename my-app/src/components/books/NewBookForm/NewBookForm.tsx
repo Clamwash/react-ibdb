@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import Card from '../ui/Card';
+import Card from '../../ui/Card';
 
 import './NewBookFormStyle.css';
 
@@ -20,9 +20,6 @@ function NewBookForm(props: any) {
         image : enteredImage,
         description: enteredDescription
     }
-
-    console.log(bookData)
-
     props.onAddBook(bookData)
   }
 

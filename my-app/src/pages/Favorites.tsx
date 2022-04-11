@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import BookList from '../components/books/BookList';
+import BookList from '../components/books/BookList/BookList';
 import { FavoritesContext } from '../store/favorites-context';
 
 function FavoritesPage() {

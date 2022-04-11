@@ -6,7 +6,9 @@ export const FavoritesContext = createContext({
   totalFavorites: 0,
   addFavorite: (favoriteBook: Book) => {},
   removeFavorite: (bookId: string) => {},
-  itemIsFavorite: (bookId: string): boolean => {return false},
+  itemIsFavorite: (bookId: string): boolean => {
+    return false;
+  },
 });
 
 export function FavoritesContextProvider(props: any) {

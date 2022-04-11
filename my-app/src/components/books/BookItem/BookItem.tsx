@@ -1,6 +1,6 @@
-import { useContext } from 'react';
-import { FavoritesContext } from '../../store/favorites-context';
-import Card from '../ui/Card';
+import { useContext, useState } from 'react';
+import { FavoritesContext } from '../../../store/favorites-context';
+import Card from '../../ui/Card';
 import './BookItemStyle.css';
 
 function BookItem(props: any) {
@@ -9,13 +9,13 @@ function BookItem(props: any) {
 
   function toggleFavoriteStatusHandler() {
     if (itemIsFavorite) {
-        console.log('remove gets executed')
       favoritesCtx.removeFavorite(props.id);
     } else {
-        console.log('book added')
+      console.log('book added');
       favoritesCtx.addFavorite({
         id: props.id,
         title: props.title,
+        author: props.author,
         description: props.description,
         image: props.image,
       });
@@ -23,17 +23,22 @@ function BookItem(props: any) {
   }
 
   return (
-    <li className="item">
+    <li className='item' data-testid='book-element'>
       <Card>
-        <div className="image">
+        <div className='image'>
           <img src={props.image} alt={props.title} />
         </div>
-        <div className="content">
+        <div className='content'>
           <p>{props.title}</p>
-          <p>{props.description} </p>
+          <p>{props.author}</p>
+          <p className='description'>{props.description} </p>
         </div>
-        <div className="actions">
-          <button onClick={toggleFavoriteStatusHandler}>
+        <div className='actions'>
+          <button
+            id='button'
+            className='favoriteButton'
+            onClick={toggleFavoriteStatusHandler}
+          >
             {itemIsFavorite ? 'Remove from Favorites' : 'To Favorites'}
           </button>
         </div>
