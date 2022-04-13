@@ -1,6 +1,7 @@
+import React from 'react';
 import MainNavigation from './MainNavigation';
 
-function Layout(props: any) {
+const Layout: React.FC = (props) => {
   return (
     <div>
       <MainNavigation />

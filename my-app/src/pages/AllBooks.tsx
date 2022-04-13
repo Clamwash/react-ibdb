@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import BookList from '../components/books/BookList/BookList';
+import { Book } from '../models/Book';
 
-function AllBooksPage() {
-  const [isLoading, setIsLoading] = useState(false)
-
+const AllBooksPage = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<Error | null>();
   const [loadedBooks, setLoadedBooks] = useState([]);
 
   // const DUMMY_DATA = [
@@ -26,38 +27,69 @@ function AllBooksPage() {
   // ];
 
   useEffect(() => {
-    setIsLoading(true)
     fetch('https://react-ibdb-default-rtdb.firebaseio.com/books.json')
-      .then((response) => response.json())
-      .then((data) => {
-        const books = [];
-        for (const key in data) {
-          const book = {
-            id: key,
-            ...data[key],
-          };
-          books.push(book);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(response.statusText);
         }
-        setIsLoading(false)
-        setLoadedBooks(books);
-        console.log(books)
-      });
+        return response.json();
+      })
+      .then(
+        (data: Book[]) => {
+          const books: Book[] = [];
+
+          // DB-CHECK
+          // for (const key in data) {
+          //   const book = {
+          //     id: key,
+          //     ...data[key],
+          //   };
+
+          //   books.push(book);
+          // }
+
+          // DB-CHECK To check if it's working when db is back
+          data.map((item) => {
+            const book = new Book(
+              item.key,
+              item.id,
+              item.title,
+              item.author,
+              item.cover_id,
+              item.description
+            );
+
+            books.push(book);
+          });
+
+          setIsLoaded(true);
+          setLoadedBooks(books);
+          console.log(books);
+        },
+        (error) => {
+          setIsLoaded(false);
+          setError(error);
+        }
+      );
   }, []);
 
-  if (isLoading) {
-    return(
+  if (error) {
+    return <div>Error: {error.message};</div>;
+  }
+  if (!isLoaded) {
+    return (
       <section>
         <p>Loading...</p>
       </section>
-    )
+    );
   }
 
   return (
     <section>
       <h1>All Books</h1>
-      <BookList books={loadedBooks} />
+      <BookList books={loadedBooks} subjectName='My books' />
     </section>
   );
-}
+};
 
 export default AllBooksPage;

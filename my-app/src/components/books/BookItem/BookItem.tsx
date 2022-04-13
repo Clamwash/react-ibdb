@@ -1,9 +1,10 @@
 import { useContext, useState } from 'react';
+import { Book } from '../../../models/Book';
 import { FavoritesContext } from '../../../store/favorites-context';
 import Card from '../../ui/Card';
 import './BookItemStyle.css';
 
-function BookItem(props: any) {
+const BookItem: React.FC<Book> = (props) => {
   const favoritesCtx = useContext(FavoritesContext);
   const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
 
@@ -45,6 +46,6 @@ function BookItem(props: any) {
       </Card>
     </li>
   );
-}
+};
 
 export default BookItem;

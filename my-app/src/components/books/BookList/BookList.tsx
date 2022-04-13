@@ -1,11 +1,9 @@
-import { Book } from '../../../interfaces/Models';
+import { Book } from '../../../models/Book';
 import BookItem from '../BookItem/BookItem';
 import './BookListStyle.css';
 
-function BookList(props: any) {
+const BookList: React.FC<{books: Book[], subjectName: string}> = (props) => {
   let id = 0
-
-  
 
   return (
     <ul className='list'>
@@ -13,14 +11,11 @@ function BookList(props: any) {
       {props.books.map(
         (book: Book) => (
           id++,
-          console.log(id),
-     
-          console.log(props),
           (
             <BookItem
               data-testid='book-element'
-              key={book.id ? book.id : book.key}
-              id={book.id ? book.id : book.key}
+              key={book.id ? book.id : book.key} // Refactor: leave only book.key
+              // id={book.id ? book.id : book.key}
               image={
                 book.image
                   ? book.image

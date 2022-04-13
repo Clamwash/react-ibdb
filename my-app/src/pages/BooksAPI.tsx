@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
 import BookList from '../components/books/BookList/BookList';
+import { Book } from '../models/Book';
 
-function BooksAPIpage() {
-  const [books, setBooks] = useState([]);
+type ResponseData = {
+  key: string,
+  works: Book[],
+  name: string
+}
+
+const BooksAPIpage = () => {
+  const [books, setBooks] = useState<ResponseData[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<Error | null>();
 
   useEffect(() => {
     // Needs refactoring
@@ -16,25 +25,37 @@ function BooksAPIpage() {
         // Get a JSON object from each of the responses
         return Promise.all(
           responses.map((response) => {
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
             return response.json();
           })
         );
       })
-      .then((data) => {
+      .then((data: ResponseData[]) => {
+        setIsLoaded(true);
         setBooks(data);
+      }, (error: Error) => {
+        setError(error)
       })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    console.log(books);
   }, []);
+
+  if (error) {
+    return <div>Error: {error.message ? error.message : 'Could not fetch the data'}</div>;
+  }
+  if (!isLoaded) {
+    return (
+      <section>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   return (
     <section>
       {books.map(
         (booksBySubject) => (
-          console.log(booksBySubject),
+          console.log(books),
           (
             <BookList
               key={booksBySubject.key}
@@ -46,5 +67,5 @@ function BooksAPIpage() {
       )}
     </section>
   );
-}
+};
 export default BooksAPIpage;

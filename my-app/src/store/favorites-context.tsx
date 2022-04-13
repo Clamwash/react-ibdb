@@ -1,32 +1,41 @@
 import { createContext, useState } from 'react';
-import { Book } from '../interfaces/Models';
+import { Book } from '../models/Book';
 
-export const FavoritesContext = createContext({
+type FavoritesContextObject = {
+  favorites: Book[];
+  totalFavorites: number;
+  addFavorite: (favoriteBook: Book) => void;
+  removeFavorite: (bookId: string) => void;
+  itemIsFavorite: (bookId: string) => boolean;
+};
+
+export const FavoritesContext = createContext<FavoritesContextObject>({
   favorites: [],
   totalFavorites: 0,
-  addFavorite: (favoriteBook: Book) => {},
+  addFavorite: () => {},
   removeFavorite: (bookId: string) => {},
-  itemIsFavorite: (bookId: string): boolean => {
+  itemIsFavorite: (bookId: string) => {
     return false;
   },
 });
 
-export function FavoritesContextProvider(props: any) {
+export const FavoritesContextProvider: React.FC = (props) => {
   const [userFavorites, setUserFavorites] = useState([]);
 
-  function addFavoriteHandler(favoriteBook: Book) {
+
+  const addFavoriteHandler = (favoriteBook: Book) => {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.concat(favoriteBook);
     });
   }
 
-  function removeFavoriteHandler(bookId: string) {
+  const removeFavoriteHandler = (bookId: string) => {
     setUserFavorites((prevUserFavorites) => {
       return prevUserFavorites.filter((book) => book.id !== bookId);
     });
   }
 
-  function itemIsFavoriteHandler(bookId: string) {
+  const itemIsFavoriteHandler = (bookId: string) => {
     return userFavorites.some((book) => book.id === bookId);
   }
 

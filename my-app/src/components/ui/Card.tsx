@@ -1,6 +1,7 @@
+import React from 'react';
 
-function Card(props: any) {
+const Card: React.FC = (props) => {
   return <div>{props.children}</div>;
-}
+};
 
 export default Card;

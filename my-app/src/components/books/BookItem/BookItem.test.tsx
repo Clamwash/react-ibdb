@@ -1,16 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { debug } from 'console';
-import { unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
 import { FavoritesContextProvider } from '../../../store/favorites-context';
 import BookItem from './BookItem';
 
 describe('BookItem component', () => {
   beforeEach(() => {
     render(
+      // Rendering BookItem should be rafactored for testing purposes
       <FavoritesContextProvider>
-        <BookItem />)
+        <BookItem title={'test'} image={'test'} description={'test'} />
       </FavoritesContextProvider>
     );
   });
@@ -23,7 +21,8 @@ describe('BookItem component', () => {
 
     test('renders posts if request succeeds', async () => {
 
-      render(<BookItem />);
+      // Rendering BookItem should be rafactored for testing purposes
+      render(<BookItem title={'test'} image={'test'} description={'test'} />);
 
       const listItemElements = await screen.findAllByRole('listitem');
       expect(listItemElements).not.toHaveLength(0);
@@ -42,5 +41,4 @@ describe('BookItem component', () => {
       ).toBeInTheDocument();
     });
   });
-
 });

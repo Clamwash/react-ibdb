@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import F1WikiTest from '../components/books/F1WikiTest/F1WikiTest';
 
-function F1Page() {
+const F1Page = () => {
   const [races, setRaces] = useState([]);
   const [winner, setWinner] = useState('');
 
@@ -26,6 +26,6 @@ function F1Page() {
   }, []);
 
   return <F1WikiTest races={races} winner={winner} />;
-}
+};
 
 export default F1Page;

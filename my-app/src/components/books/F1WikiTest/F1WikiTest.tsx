@@ -1,6 +1,6 @@
 import Card from '../../ui/Card';
 
-function F1WikiTest(props: any) {
+const F1WikiTest: React.FC<{races: string[], winner: string}> = (props) => {
   const winner = props.winner;
   const races = props.races;
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FavoritesContext } from '../../store/favorites-context';
 import './MainNavigationStyle.css';
 
-function MainNavigation() {
+const MainNavigation = () => {
   const favoritesCtx = useContext(FavoritesContext)
 
   return (
