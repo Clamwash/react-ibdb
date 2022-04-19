@@ -8,7 +8,7 @@ describe('BookItem component', () => {
     render(
       // Rendering BookItem should be rafactored for testing purposes
       <FavoritesContextProvider>
-        <BookItem title={'test'} image={'test'} description={'test'} />
+        <BookItem title={'test'} image={'test'} description={'test'} id={'test'}/>
       </FavoritesContextProvider>
     );
   });
@@ -22,7 +22,7 @@ describe('BookItem component', () => {
     test('renders posts if request succeeds', async () => {
 
       // Rendering BookItem should be rafactored for testing purposes
-      render(<BookItem title={'test'} image={'test'} description={'test'} />);
+      render(<BookItem title={'test'} image={'test'} description={'test'} id={'test'} />);
 
       const listItemElements = await screen.findAllByRole('listitem');
       expect(listItemElements).not.toHaveLength(0);

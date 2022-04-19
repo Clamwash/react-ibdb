@@ -32,11 +32,12 @@ const NewBookForm: React.FC = () => {
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
 
-    const enteredTitle = titleInputRef.current.value;
-    const enteredImage = imageInputRef.current.value;
-    const enteredDescription = descriptionInputRef.current.value;
+    const enteredTitle = titleInputRef.current!.value;
+    const enteredImage = imageInputRef.current!.value;
+    const enteredDescription = descriptionInputRef.current!.value;
 
-    const bookData = {
+    const bookData: Book = {
+      id: 'id',   // Refactor needed
       title: enteredTitle,
       image: enteredImage,
       description: enteredDescription,

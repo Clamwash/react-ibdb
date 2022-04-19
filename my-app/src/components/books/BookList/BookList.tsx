@@ -9,11 +9,13 @@ const BookList: React.FC<{books: Book[], subjectName: string}> = (props) => {
     <ul className='list'>
       <h1 className='listTitle'>{props.subjectName}</h1>
       {props.books.map(
-        (book: Book) => (
+        (book) => (
+          console.log(book.authors[0].name),
           id++,
           (
             <BookItem
               data-testid='book-element'
+              id={book.id}
               key={book.id ? book.id : book.key} // Refactor: leave only book.key
               // id={book.id ? book.id : book.key}
               image={
@@ -22,7 +24,7 @@ const BookList: React.FC<{books: Book[], subjectName: string}> = (props) => {
                   : `https://covers.openlibrary.org/b/id/${book.cover_id}-L.jpg`
               }
               title={book.title}
-              author={book.author}
+              authors={book.authors[0].name}
               description={book.description}
             />
           )

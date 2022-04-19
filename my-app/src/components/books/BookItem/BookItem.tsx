@@ -16,7 +16,7 @@ const BookItem: React.FC<Book> = (props) => {
       favoritesCtx.addFavorite({
         id: props.id,
         title: props.title,
-        author: props.author,
+        authors: props.authors,
         description: props.description,
         image: props.image,
       });
@@ -30,8 +30,8 @@ const BookItem: React.FC<Book> = (props) => {
           <img src={props.image} alt={props.title} />
         </div>
         <div className='content'>
-          <p>{props.title}</p>
-          <p>{props.author}</p>
+          <h3>{props.title}</h3>
+          <p>By {props.authors}</p>
           <p className='description'>{props.description} </p>
         </div>
         <div className='actions'>

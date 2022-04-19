@@ -54,7 +54,7 @@ const AllBooksPage = () => {
               item.key,
               item.id,
               item.title,
-              item.author,
+              item.authors,
               item.cover_id,
               item.description
             );
