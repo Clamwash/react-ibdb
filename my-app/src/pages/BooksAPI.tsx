@@ -1,17 +1,20 @@
 import { useEffect, useState } from 'react';
 import BookList from '../components/books/BookList/BookList';
+import CategorySelector from '../components/books/CategorySelector/CategorySelector';
 import { Book } from '../models/Book';
 
 type ResponseData = {
-  key: string,
-  works: Book[],
-  name: string
-}
+  key: string;
+  works: Book[];
+  name: string;
+};
 
 const BooksAPIpage = () => {
   const [books, setBooks] = useState<ResponseData[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<Error | null>();
+
+  const [selectedCategory, setSelectedCategory] = useState('all');
 
   useEffect(() => {
     // Needs refactoring
@@ -32,16 +35,34 @@ const BooksAPIpage = () => {
           })
         );
       })
-      .then((data: ResponseData[]) => {
-        setIsLoaded(true);
-        setBooks(data);
-      }, (error: Error) => {
-        setError(error)
-      })
+      .then(
+        (data: ResponseData[]) => {
+          setIsLoaded(true);
+          setBooks(data);
+        },
+        (error: Error) => {
+          setError(error);
+        }
+      );
   }, []);
 
+  const categorySelectHandler = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  const filterByCategory = books.filter((booksByCategory) => {
+    return selectedCategory === 'all'
+      ? books
+      : booksByCategory.name === selectedCategory;
+
+  });
+
   if (error) {
-    return <div>Error: {error.message ? error.message : 'Could not fetch the data'}</div>;
+    return (
+      <div>
+        Error: {error.message ? error.message : 'Could not fetch the data'}
+      </div>
+    );
   }
   if (!isLoaded) {
     return (
@@ -52,20 +73,27 @@ const BooksAPIpage = () => {
   }
 
   return (
-    <section>
-      {books.map(
-        (booksBySubject) => (
-          console.log(books),
-          (
-            <BookList
-              key={booksBySubject.key}
-              books={booksBySubject.works}
-              subjectName={booksBySubject.name}
-            />
-          )
-        )
-      )}
-    </section>
+    console.log(filterByCategory),
+    (
+      <div>
+        <CategorySelector onCategorySelected={categorySelectHandler} />
+
+        <section>
+          {filterByCategory.map(
+            (booksByCategory) => (
+              console.log(books),
+              (
+                <BookList
+                  key={booksByCategory.key}
+                  books={booksByCategory.works}
+                  subjectName={booksByCategory.name}
+                />
+              )
+            )
+          )}
+        </section>
+      </div>
+    )
   );
 };
 export default BooksAPIpage;

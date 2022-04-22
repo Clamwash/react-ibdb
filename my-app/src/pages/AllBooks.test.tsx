@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { useEffect, useState } from 'react';
-import BookItem from '../components/books/BookItem/BookItem';
+import BookItem from '../components/books/BookList/BookItem/BookItem';
 import BookList from '../components/books/BookList/BookList';
 import { Book } from '../models/Book';
 import AllBooksPage from './AllBooks';

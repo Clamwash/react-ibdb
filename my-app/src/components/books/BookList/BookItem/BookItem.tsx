@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { Book } from '../../../models/Book';
-import { FavoritesContext } from '../../../store/favorites-context';
-import Card from '../../ui/Card';
+import { Book } from '../../../../models/Book';
+import { FavoritesContext } from '../../../../store/favorites-context';
+import Card from '../../../ui/Card';
 import './BookItemStyle.css';
 
 const BookItem: React.FC<Book> = (props) => {

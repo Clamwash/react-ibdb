@@ -1,5 +1,5 @@
 import { Book } from '../../../models/Book';
-import BookItem from '../BookItem/BookItem';
+import BookItem from './BookItem/BookItem';
 import './BookListStyle.css';
 
 const BookList: React.FC<{books: Book[], subjectName: string}> = (props) => {
@@ -10,7 +10,6 @@ const BookList: React.FC<{books: Book[], subjectName: string}> = (props) => {
       <h1 className='listTitle'>{props.subjectName}</h1>
       {props.books.map(
         (book) => (
-          console.log(book.authors[0].name),
           id++,
           (
             <BookItem

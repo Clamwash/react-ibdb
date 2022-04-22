@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FavoritesContextProvider } from '../../../store/favorites-context';
+import { FavoritesContextProvider } from '../../../../store/favorites-context';
 import BookItem from './BookItem';
 
 describe('BookItem component', () => {
