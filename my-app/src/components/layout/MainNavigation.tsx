@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { FavoritesContext } from '../../store/favorites-context';
-import SearchBar from '../books/SearchBar/SearchBar';
 import './MainNavigationStyle.css';
 
 const MainNavigation = () => {
@@ -26,9 +25,6 @@ const MainNavigation = () => {
           </li>
           <li>
             <Link to='/favorites'>My Favorites<span className="badge">{favoritesCtx.totalFavorites}</span></Link>
-          </li>
-          <li>
-            <SearchBar/>
           </li>
         </ul>
       </nav>
